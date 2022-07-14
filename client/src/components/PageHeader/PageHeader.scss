@@ -1,0 +1,23 @@
+@use "../../styles/partials/mixins";
+@use "../../styles/partials/colours";
+
+.header {
+  display: flex;
+  padding: 1rem 2.5rem;
+  justify-content: space-between;
+  align-items: center;
+  &__logo-container {
+    display: flex;
+    align-items: center;
+    border: solid 1px colours.$workflow-black;
+    border-radius: 0.5rem;
+  }
+  &__title {
+    margin: 0.5rem;
+  }
+  &__logo {
+    width: auto;
+    height: 3rem;
+    border-radius: 0.25rem;
+  }
+}

@@ -1,0 +1,46 @@
+@use "./colours";
+@use "./mixins";
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: colours.$workflow-black;
+}
+// Page header h1,
+h1 {
+  @include mixins.mobile-page-header;
+  @include mixins.tablet {
+    @include mixins.tablet-desktop-page-header;
+  }
+}
+//Section header
+h2 {
+  @include mixins.mobile-page-header;
+  @include mixins.tablet {
+    @include mixins.tablet-desktop-section-header;
+  }
+}
+// Subheader
+h3 {
+  @include mixins.mobile-subheader;
+  @include mixins.tablet {
+    @include mixins.tablet-desktop-subheader;
+  }
+}
+//Body Copy
+p {
+  @include mixins.mobile-body-copy;
+  @include mixins.tablet {
+    @include mixins.tablet-desktop-body-copy;
+  }
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}

@@ -96,7 +96,7 @@ router
 //create endpoint to delete project
 //DELETE
 router
-    .delete('./id', (req, res) => {
+    .delete('/:id', (req, res) => {
         const projectId = req.params.id;
         const projectsData = readProjects();
         const deletedProject = projectsData.find(project => project.id === projectId);

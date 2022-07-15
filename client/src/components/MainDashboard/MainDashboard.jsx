@@ -84,7 +84,7 @@ class MainDashboard extends Component {
             closeModal={this.handleCloseModal}
             itemType={this.state.itemType}
             projectId={this.state.selectedProjectId}
-            refreshProjects={this.refreshProject}
+            refreshProject={this.refreshProject}
             getProjects={this.getProjects}
           />
         ) : (
@@ -131,25 +131,7 @@ class MainDashboard extends Component {
                           description={task.description}
                           taskId={task.id}
                           projectId={this.state.selectedProject.id}
-                        />
-                      );
-                    })}
-              </div>
-              <div className="stage">
-                <h2 className="stage__title">Executing</h2>
-                {this.state.selectedProject &&
-                  this.state.selectedProject.tasks
-                    .filter((task) => {
-                      return task.stage === "Executing";
-                    })
-                    .map((task) => {
-                      return (
-                        <Task
-                          key={task.id}
-                          name={task.name}
-                          description={task.description}
-                          taskId={task.id}
-                          projectId={this.state.selectedProject.id}
+                          refreshProject={this.refreshProject}
                         />
                       );
                     })}
@@ -169,10 +151,32 @@ class MainDashboard extends Component {
                           description={task.description}
                           taskId={task.id}
                           projectId={this.state.selectedProject.id}
+                          refreshProject={this.refreshProject}
                         />
                       );
                     })}
               </div>
+              <div className="stage">
+                <h2 className="stage__title">Executing</h2>
+                {this.state.selectedProject &&
+                  this.state.selectedProject.tasks
+                    .filter((task) => {
+                      return task.stage === "Executing";
+                    })
+                    .map((task) => {
+                      return (
+                        <Task
+                          key={task.id}
+                          name={task.name}
+                          description={task.description}
+                          taskId={task.id}
+                          projectId={this.state.selectedProject.id}
+                          refreshProject={this.refreshProject}
+                        />
+                      );
+                    })}
+              </div>
+
               <div className="stage">
                 <h2 className="stage__title">Completed</h2>
                 {this.state.selectedProject &&
@@ -188,6 +192,7 @@ class MainDashboard extends Component {
                           description={task.description}
                           taskId={task.id}
                           projectId={this.state.selectedProject.id}
+                          refreshProject={this.refreshProject}
                         />
                       );
                     })}

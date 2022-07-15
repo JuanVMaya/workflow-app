@@ -7,7 +7,7 @@ const AddItemForm = ({
   closeModal,
   itemType,
   projectId,
-  refreshProjects,
+  refreshProject,
   getProjects,
 }) => {
   const handleCloseForm = () => {
@@ -46,7 +46,7 @@ const AddItemForm = ({
       })
       .then((response) => {
         closeModal();
-        refreshProjects(projectId);
+        refreshProject(projectId);
       })
       .catch((error) => {
         console.log("There was an error creating the project", error);

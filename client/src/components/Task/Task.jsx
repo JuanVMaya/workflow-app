@@ -1,15 +1,18 @@
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import axios from "axios";
 import "./Task.scss";
-const Task = ({ name, description, projectId, taskId }) => {
+const Task = ({ name, description, projectId, taskId, refreshProject }) => {
   const handleNext = () => {
     // projects/:projectId/tasks/:taskId/stage
     axios
-      .put(`http://localhost:8080/projects/${projectId}/tasks/${taskId}/stage`, {
-        instruction: "next",
-      })
+      .put(
+        `http://localhost:8080/projects/${projectId}/tasks/${taskId}/stage`,
+        {
+          instruction: "next",
+        }
+      )
       .then((response) => {
-        console.log(response);
+        refreshProject(projectId);
       })
       .catch((error) => {
         console.log("There was an error updating the stage", error);
@@ -18,11 +21,14 @@ const Task = ({ name, description, projectId, taskId }) => {
   const handlePrevious = () => {
     // projects/:projectId/tasks/:taskId/stage
     axios
-      .put(`http://localhost:8080/projects/${projectId}/tasks/${taskId}/stage`, {
-        instruction: "previous",
-      })
+      .put(
+        `http://localhost:8080/projects/${projectId}/tasks/${taskId}/stage`,
+        {
+          instruction: "previous",
+        }
+      )
       .then((response) => {
-        console.log(response);
+        refreshProject(projectId);
       })
       .catch((error) => {
         console.log("There was an error updating the stage", error);

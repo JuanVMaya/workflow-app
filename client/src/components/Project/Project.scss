@@ -4,6 +4,7 @@
 .project {
   padding: 1rem;
   border-left: 1px solid colours.$workflow-darkblue;
+  border-right: 1px solid colours.$workflow-darkblue;
   border-bottom: 1px solid colours.$workflow-darkblue;
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
@@ -16,8 +17,7 @@
   }
   &--selected {
     background-color: colours.$mercury;
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
+    border-right: none;
     &:hover {
       background-color: colours.$mercury;
     }

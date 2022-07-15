@@ -12,6 +12,7 @@
     min-width: 15%;
     border-top-right-radius: 0.5rem;
     padding: 0.5rem 0 0.5rem 0.5rem;
+    overflow: auto;
   }
   &__tasks {
     background-color: colours.$mercury;
@@ -33,7 +34,7 @@
   overflow: auto;
   padding: 1rem;
   border-radius: 0.5rem;
-  &__title{
+  &__title {
     margin-bottom: 1.5rem;
   }
   &__header-container {

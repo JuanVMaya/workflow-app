@@ -9,16 +9,40 @@
                 "id": "191cbda5227e4095b24eb35c5596d6b5"
             },
             {
+                "name": "Renew Membership",
+                "description": "Turn in expired membership card and apply for new one",
+                "stage": "Executing",
+                "id": "1cd4d108f5154b76a3bcaacda135dd01"
+            },
+            {
                 "name": "Go to Walmart",
                 "description": "Get muffins and croissants",
                 "stage": "Planning",
                 "id": "ed84e641d2254ffa9028c5afbd2acd32"
             },
             {
+                "name": "Update Shopping List",
+                "description": "Go through pantry and freezer to get needed items",
+                "stage": "Unassigned",
+                "id": "d9e9086bdeea4238ab0649ed5969b681"
+            },
+            {
+                "name": "Compare Store Prices",
+                "description": "Make a list of food prices and discounts",
+                "stage": "Unassigned",
+                "id": "1d0bcde8b0804a6e8c6aaec0d2e3cdd6"
+            },
+            {
                 "name": "Go to Loblaws",
                 "description": "Get noodles",
                 "stage": "Executing",
                 "id": "c85b0f815a654cfbb35686ac3e402239"
+            },
+            {
+                "name": "Buy Shopping Bags",
+                "description": "Replace worn out shopping bags",
+                "stage": "Planning",
+                "id": "4c2fb0c26641449e8c1b61bd81a85947"
             }
         ],
         "timestamp": 1657839502,
@@ -28,6 +52,18 @@
     {
         "name": "Health Check",
         "tasks": [
+            {
+                "name": "Health Card",
+                "description": "Apply for health card online",
+                "stage": "Executing",
+                "id": "d9abe073f31a4c8aae0049ef73197239"
+            },
+            {
+                "name": "Go to Service Ontario",
+                "description": "Submit application and get temporary card",
+                "stage": "Planning",
+                "id": "96a9f1ec81754e99ac5ebadfa3532a9e"
+            },
             {
                 "name": "Call Doctor",
                 "description": "Make hospital Appointment",
@@ -48,6 +84,18 @@
     {
         "name": "Job Search",
         "tasks": [
+            {
+                "name": "Update Resume",
+                "description": "Fill out work experience and education information",
+                "stage": "Completed",
+                "id": "fa30564bf4b3430cb1d44f500545f3b1"
+            },
+            {
+                "name": "Write Cover Letter",
+                "description": "Get cover letter template and write mine",
+                "stage": "Unassigned",
+                "id": "bc2d3864c33a4a929d219b899e86fd14"
+            },
             {
                 "name": "Update LinkedIn",
                 "description": "Take professional picture",

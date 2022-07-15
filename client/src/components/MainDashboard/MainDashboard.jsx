@@ -15,6 +15,19 @@ class MainDashboard extends Component {
     selectedProject: null,
   };
 
+  refreshProject = (id) => {
+    axios
+      .get(`http://localhost:8080/projects/${id}`)
+      .then((response) => {
+        this.setState({
+          selectedProject: response.data,
+        });
+      })
+      .catch((error) => {
+        console.log("There was an error getting the tasks", error);
+      });
+  };
+
   handleAddProject = () => {
     this.setState({
       itemType: "project",
@@ -55,17 +68,7 @@ class MainDashboard extends Component {
 
   componentDidUpdate = (prevProps, prevState) => {
     if (prevState.selectedProjectId !== this.state.selectedProjectId) {
-      axios
-        .get(`http://localhost:8080/projects/${this.state.selectedProjectId}`)
-        .then((response) => {
-          console.log(response.data);
-          this.setState({
-            selectedProject: response.data,
-          });
-        })
-        .catch((error) => {
-          console.log("There was an error getting the tasks", error);
-        });
+      this.refreshProject(this.state.selectedProjectId);
     }
   };
 
@@ -77,6 +80,7 @@ class MainDashboard extends Component {
             isOpen={this.state.isModalOpen}
             closeModal={this.handleCloseModal}
             itemType={this.state.itemType}
+            projectId={this.state.selectedProjectId}
           />
         ) : (
           <main className="dashboard">

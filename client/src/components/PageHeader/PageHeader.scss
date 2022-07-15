@@ -3,7 +3,11 @@
 
 .header {
   display: flex;
-  padding: 1rem 2.5rem;
+  padding-right: 3rem;
+  padding-left: 3rem;
+  padding-top: auto;
+  padding-bottom: auto;
+  height: 10vh;
   justify-content: space-between;
   align-items: center;
   &__logo-container {

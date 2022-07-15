@@ -33,11 +33,12 @@
   overflow: auto;
   padding: 1rem;
   border-radius: 0.5rem;
+  &__title{
+    margin-bottom: 1.5rem;
+  }
   &__header-container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
   }
   &__button {
     display: flex;

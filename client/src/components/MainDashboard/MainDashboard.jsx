@@ -2,143 +2,147 @@ import Project from "../Project/Project";
 import Task from "../Task/Task";
 import AddItemForm from "../AddItemForm/AddItemForm";
 import { AiOutlinePlus } from "react-icons/ai";
-import { useState } from "react";
+import { Component } from "react";
 import "./MainDashboard.scss";
 
-const MainDashboard = (props) => {
-  let [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleAddItem = () => {
-    console.log(isModalOpen);
-    setIsModalOpen(true);
+class MainDashboard extends Component {
+  state = {
+    isModalOpen: false,
+    itemType: "",
   };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
+  handleAddProject = () => {
+    this.setState({
+      itemType: "project",
+      isModalOpen: true,
+    });
+  };
+  handleAddTask = () => {
+    this.setState({
+      itemType: "task",
+      isModalOpen: true,
+    });
   };
 
-  return (
-    <>
-      {isModalOpen ? (
-        <AddItemForm
-          isOpen={isModalOpen}
-          closeModal={handleCloseModal}
-          itemType="project"
-        />
-      ) : (
-        <main className="dashboard">
-          <article className="dashboard__projects">
-            <h1 className="dashboard__title">Projects</h1>
-            <button className="button" onClick={handleAddItem}>
-              <AiOutlinePlus />
-              <span className="button__text">Add project</span>
-            </button>
+  handleCloseModal = () => {
+    this.setState({
+      isModalOpen: false,
+    });
+  };
 
-            <Project
-              name="Project Name 1"
-              timestamp="2022 - 06 - 10"
-              deadline="2022 - 06 - 10"
-              selected={false}
-            />
-            <Project
-              name="Project Name 2"
-              timestamp="2022 - 06 - 10"
-              deadline="2022 - 06 - 10"
-              selected={true}
-            />
-            <Project
-              name="Project Name 3"
-              timestamp="2022 - 06 - 10"
-              deadline="2022 - 06 - 10"
-              selected={false}
-            />
-          </article>
-          <article className="dashboard__tasks">
-            <div className="stage">
-              <div className="stage__header-container">
-                <h2 className="stage__title">Not started</h2>
-                <button className="stage__button">
-                  <AiOutlinePlus size="1.5rem" />
-                </button>
+  render() {
+    return (
+      <>
+        {this.state.isModalOpen ? (
+          <AddItemForm
+            isOpen={this.state.isModalOpen}
+            closeModal={this.handleCloseModal}
+            itemType={this.state.itemType}
+          />
+        ) : (
+          <main className="dashboard">
+            <article className="dashboard__projects">
+              <h1 className="dashboard__title">Projects</h1>
+              <button className="button" onClick={this.handleAddProject}>
+                <AiOutlinePlus />
+                <span className="button__text">Add project</span>
+              </button>
+
+              <Project
+                name="Project Name 1"
+                timestamp="2022 - 06 - 10"
+                deadline="2022 - 06 - 10"
+                selected={false}
+              />
+              <Project
+                name="Project Name 2"
+                timestamp="2022 - 06 - 10"
+                deadline="2022 - 06 - 10"
+                selected={true}
+              />
+              <Project
+                name="Project Name 3"
+                timestamp="2022 - 06 - 10"
+                deadline="2022 - 06 - 10"
+                selected={false}
+              />
+            </article>
+            <article className="dashboard__tasks">
+              <div className="stage">
+                <div className="stage__header-container">
+                  <h2 className="stage__title">Not started</h2>
+                  <button
+                    className="stage__button"
+                    onClick={this.handleAddTask}
+                  >
+                    <AiOutlinePlus size="1.5rem" />
+                  </button>
+                </div>
+                <Task
+                  name="Task 1"
+                  description="This is the task description. Watch out becuase it can get very long"
+                />
+                <Task
+                  name="Task 2"
+                  description="This is the task description #2. Watch out becuase it can get very long"
+                />
+                <Task
+                  name="Task 3"
+                  description="This is the task description #2. Watch out becuase it can get very long"
+                />
               </div>
-              <Task
-                name="Task 1"
-                description="This is the task description. Watch out becuase it can get very long"
-              />
-              <Task
-                name="Task 2"
-                description="This is the task description #2. Watch out becuase it can get very long"
-              />
-              <Task
-                name="Task 3"
-                description="This is the task description #2. Watch out becuase it can get very long"
-              />
-            </div>
-            <div className="stage">
-              <div className="stage__header-container">
+              <div className="stage">
                 <h2 className="stage__title">Executing</h2>
-                <button className="stage__button">
-                  <AiOutlinePlus size="1.5rem" />
-                </button>
+                <Task
+                  name="Task 1"
+                  description="This is the task description. Watch out becuase it can get very long"
+                />
+                <Task
+                  name="Task 2"
+                  description="This is the task description #2. Watch out becuase it can get very long"
+                />
+                <Task
+                  name="Task 3"
+                  description="This is the task description #2. Watch out becuase it can get very long"
+                />
+                <Task
+                  name="Task 4"
+                  description="This is the task description #2. Watch out becuase it can get very long"
+                />
               </div>
-              <Task
-                name="Task 1"
-                description="This is the task description. Watch out becuase it can get very long"
-              />
-              <Task
-                name="Task 2"
-                description="This is the task description #2. Watch out becuase it can get very long"
-              />
-              <Task
-                name="Task 3"
-                description="This is the task description #2. Watch out becuase it can get very long"
-              />
-              <Task
-                name="Task 4"
-                description="This is the task description #2. Watch out becuase it can get very long"
-              />
-            </div>
-            <div className="stage">
-              <div className="stage__header-container">
+              <div className="stage">
                 <h2 className="stage__title">Planning</h2>
-                <button className="stage__button">
-                  <AiOutlinePlus size="1.5rem" />
-                </button>
+                <Task
+                  name="Task 1"
+                  description="This is the task description. Watch out becuase it can get very long"
+                />
+                <Task
+                  name="Task 2"
+                  description="This is the task description #2. Watch out becuase it can get very long"
+                />
+                <Task
+                  name="Task 3"
+                  description="This is the task description #2. Watch out becuase it can get very long"
+                />
               </div>
-              <Task
-                name="Task 1"
-                description="This is the task description. Watch out becuase it can get very long"
-              />
-              <Task
-                name="Task 2"
-                description="This is the task description #2. Watch out becuase it can get very long"
-              />
-              <Task
-                name="Task 3"
-                description="This is the task description #2. Watch out becuase it can get very long"
-              />
-            </div>
-            <div className="stage">
-              <div className="stage__header-container">
+              <div className="stage">
                 <h2 className="stage__title">Completed</h2>
-                <button className="stage__button">
-                  <AiOutlinePlus size="1.5rem" />
-                </button>
+
+                <Task
+                  name="Task 1"
+                  description="This is the task description. Watch out becuase it can get very long"
+                />
+                <Task
+                  name="Task 2"
+                  description="This is the task description #2. Watch out becuase it can get very long"
+                />
               </div>
-              <Task
-                name="Task 1"
-                description="This is the task description. Watch out becuase it can get very long"
-              />
-              <Task
-                name="Task 2"
-                description="This is the task description #2. Watch out becuase it can get very long"
-              />
-            </div>
-          </article>
-        </main>
-      )}
-    </>
-  );
-};
+            </article>
+          </main>
+        )}
+      </>
+    );
+  }
+}
 
 export default MainDashboard;

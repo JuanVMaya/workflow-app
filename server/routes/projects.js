@@ -76,6 +76,21 @@ router
 
 //create endpoint to update task stage
 //PUT
+router 
+    .put('/:projectId/tasks/:taskId/stage', (req, res) => {
+        const projectId = req.params.projectId;
+        const taskId = req.params.taskId;
+        const projectsData = readProjects();
+
+        const selectedProject = projectsData.find(project => project.id === projectId);
+        const selectedTask = selectedProject.tasks.find(task => task.id === taskId);
+
+        selectedTask.stage = req.body.stage;
+
+        fs.writeFileSync('./data/projects.json', JSON.stringify(projectsData));
+
+        res.status(200).json(selectedTask);
+    });
 
 
 //create endpoint to delete project

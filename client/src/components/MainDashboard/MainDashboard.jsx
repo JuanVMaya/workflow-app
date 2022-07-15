@@ -3,12 +3,15 @@ import Task from "../Task/Task";
 import AddItemForm from "../AddItemForm/AddItemForm";
 import { AiOutlinePlus } from "react-icons/ai";
 import { Component } from "react";
+import axios from "axios";
 import "./MainDashboard.scss";
 
 class MainDashboard extends Component {
   state = {
     isModalOpen: false,
     itemType: "",
+    projectData: [],
+    selectedProject: {},
   };
 
   handleAddProject = () => {
@@ -30,6 +33,15 @@ class MainDashboard extends Component {
     });
   };
 
+  componentDidMount = () => {
+    axios.get("http://localhost:8080/projects").then((response) => {
+      console.log(response.data);
+      this.setState({
+        projectData: response.data,
+      });
+    });
+  };
+
   render() {
     return (
       <>
@@ -47,7 +59,20 @@ class MainDashboard extends Component {
                 <AiOutlinePlus />
                 <span className="button__text">Add project</span>
               </button>
-
+              {this.state.projectData.map((project) => {
+                return (
+                  <Project
+                    key={project.id}
+                    name={project.name}
+                    selected={this.state.selectedProject.id === project.id}
+                    onClick={() => {
+                      this.setState({
+                        selectedProject: project,
+                      });
+                    }}
+                  />
+                );
+              })}
               <Project
                 name="Project Name 1"
                 timestamp="2022 - 06 - 10"

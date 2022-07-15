@@ -44,3 +44,23 @@ a {
   text-decoration: none;
   color: inherit;
 }
+//Scrollbar
+/* width */
+::-webkit-scrollbar {
+  width: 0.6rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: colours.$alabaster; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: colours.$silver; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: colours.$silver; 
+}

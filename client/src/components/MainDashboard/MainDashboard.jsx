@@ -1,9 +1,6 @@
-import {
-  AiOutlinePlus,
-  AiOutlineArrowLeft,
-  AiOutlineArrowRight,
-} from "react-icons/ai";
+import { AiOutlinePlus } from "react-icons/ai";
 import Project from "../Project/Project";
+import Task from "../Task/Task";
 import "./MainDashboard.scss";
 const MainDashboard = (props) => {
   return (
@@ -27,6 +24,12 @@ const MainDashboard = (props) => {
           deadline="2022 - 06 - 10"
           selected={true}
         />
+        <Project
+          name="Project Name 3"
+          timestamp="2022 - 06 - 10"
+          deadline="2022 - 06 - 10"
+          selected={false}
+        />
       </article>
       <article className="dashboard__tasks">
         <div className="stage">
@@ -36,18 +39,78 @@ const MainDashboard = (props) => {
               <AiOutlinePlus size="1.5rem" />
             </button>
           </div>
-          <section className="task">
-            <h3 className="task__title">Task 1</h3>
-            <p>Description</p>
-            <div className="task__button-container">
-              <button className="task__button task__button--previous">
-                <AiOutlineArrowLeft />
-              </button>
-              <button className="task__button task__button--next">
-                <AiOutlineArrowRight />
-              </button>
-            </div>
-          </section>
+          <Task
+            name="Task 1"
+            description="This is the task description. Watch out becuase it can get very long"
+          />
+          <Task
+            name="Task 2"
+            description="This is the task description #2. Watch out becuase it can get very long"
+          />
+          <Task
+            name="Task 3"
+            description="This is the task description #2. Watch out becuase it can get very long"
+          />
+        </div>
+        <div className="stage">
+          <div className="stage__header-container">
+            <h2 className="stage__title">Executing</h2>
+            <button className="stage__button">
+              <AiOutlinePlus size="1.5rem" />
+            </button>
+          </div>
+          <Task
+            name="Task 1"
+            description="This is the task description. Watch out becuase it can get very long"
+          />
+          <Task
+            name="Task 2"
+            description="This is the task description #2. Watch out becuase it can get very long"
+          />
+          <Task
+            name="Task 3"
+            description="This is the task description #2. Watch out becuase it can get very long"
+          />
+          <Task
+            name="Task 4"
+            description="This is the task description #2. Watch out becuase it can get very long"
+          />
+        </div>
+        <div className="stage">
+          <div className="stage__header-container">
+            <h2 className="stage__title">Planning</h2>
+            <button className="stage__button">
+              <AiOutlinePlus size="1.5rem" />
+            </button>
+          </div>
+          <Task
+            name="Task 1"
+            description="This is the task description. Watch out becuase it can get very long"
+          />
+          <Task
+            name="Task 2"
+            description="This is the task description #2. Watch out becuase it can get very long"
+          />
+          <Task
+            name="Task 3"
+            description="This is the task description #2. Watch out becuase it can get very long"
+          />
+        </div>
+        <div className="stage">
+          <div className="stage__header-container">
+            <h2 className="stage__title">Completed</h2>
+            <button className="stage__button">
+              <AiOutlinePlus size="1.5rem" />
+            </button>
+          </div>
+          <Task
+            name="Task 1"
+            description="This is the task description. Watch out becuase it can get very long"
+          />
+          <Task
+            name="Task 2"
+            description="This is the task description #2. Watch out becuase it can get very long"
+          />
         </div>
       </article>
     </main>

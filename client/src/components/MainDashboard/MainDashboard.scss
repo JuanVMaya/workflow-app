@@ -28,8 +28,9 @@
   display: flex;
   flex-direction: column;
   background-color: colours.$white;
-
-  min-width: 24%;
+  max-width: 24%;
+  min-width: 23%;
+  overflow: auto;
   padding: 1rem;
   border-radius: 0.5rem;
   &__header-container {
@@ -54,38 +55,7 @@
     }
   }
 }
-.task {
-  padding: 1rem;
-  background-color: colours.$alabaster;
-  border-radius: 0.5rem;
-  &__title {
-    margin-bottom: 0.5rem;
-  }
-  &__button-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 0.75rem;
-  }
-  &__button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: colours.$white;
-    border: none;
-    border-radius: 50%;
-    padding: 0.25rem;
-    &:hover {
-      cursor: pointer;
-    }
-    &--next {
-      background-color: colours.$workflow-green;
-    }
-    &--previous {
-      background-color: colours.$workflow-salmon;
-    }
-  }
-}
+
 .button {
   display: flex;
   align-items: center;
@@ -102,30 +72,5 @@
   }
   &__text {
     margin-left: 0.5rem;
-  }
-}
-.project {
-  padding: 1rem;
-  border-left: 1px solid colours.$workflow-darkblue;
-  border-bottom: 1px solid colours.$workflow-darkblue;
-  border-top-left-radius: 0.5rem;
-  border-bottom-left-radius: 0.5rem;
-  &:first-of-type {
-    border-top: 1px solid colours.$workflow-darkblue;
-    margin-top: 1rem;
-  }
-  &:hover {
-    background-color: colours.$alabaster;
-  }
-  &--selected {
-    background-color: colours.$mercury;
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
-    &:hover {
-      background-color: colours.$mercury;
-    }
-  }
-  &__title {
-    margin-bottom: 0.5rem;
   }
 }

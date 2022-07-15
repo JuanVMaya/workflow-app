@@ -1,0 +1,36 @@
+@use "../../styles/partials/mixins";
+@use "../../styles/partials/colours";
+
+.task {
+  padding: 1rem;
+  background-color: colours.$alabaster;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  &__title {
+    margin-bottom: 0.5rem;
+  }
+  &__button-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.75rem;
+  }
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: colours.$white;
+    border: none;
+    border-radius: 50%;
+    padding: 0.25rem;
+    &:hover {
+      cursor: pointer;
+    }
+    &--next {
+      background-color: colours.$workflow-green;
+    }
+    &--previous {
+      background-color: colours.$workflow-salmon;
+    }
+  }
+}

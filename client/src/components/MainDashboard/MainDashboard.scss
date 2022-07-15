@@ -1,0 +1,77 @@
+@use "../../styles/partials/mixins";
+@use "../../styles/partials/colours";
+
+.dashboard {
+  display: flex;
+  width: 100vw;
+  height: 90vh;
+  &__title {
+    margin-bottom: 0.5rem;
+  }
+  &__projects {
+    min-width: 15%;
+    border-top-right-radius: 0.5rem;
+    padding: 0.5rem 0 0.5rem 0.5rem;
+  }
+  &__tasks {
+    background-color: colours.$mercury;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    flex-grow: 1;
+    padding: 0.5rem 0.5rem 0.5rem 0;
+    display: flex;
+    padding: 1rem;
+    justify-content: space-between;
+  }
+}
+.stage {
+  display: flex;
+  flex-direction: column;
+  background-color: colours.$white;
+  max-width: 24%;
+  min-width: 23%;
+  overflow: auto;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  &__title{
+    margin-bottom: 1.5rem;
+  }
+  &__header-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 1.75rem;
+    height: 1.75rem;
+    background-color: colours.$workflow-darkblue;
+    color: colours.$white;
+    border: none;
+    &:hover {
+      background-color: colours.$workflow-blue;
+      cursor: pointer;
+    }
+  }
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+  color: colours.$white;
+  background-color: colours.$workflow-darkblue;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  &:hover {
+    background-color: colours.$workflow-blue;
+    cursor: pointer;
+  }
+  &__text {
+    margin-left: 0.5rem;
+  }
+}

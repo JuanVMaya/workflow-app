@@ -27,6 +27,18 @@ class MainDashboard extends Component {
         console.log("There was an error getting the tasks", error);
       });
   };
+  getProjects = () => {
+    axios
+      .get("http://localhost:8080/projects")
+      .then((response) => {
+        this.setState({
+          projectData: response.data,
+        });
+      })
+      .catch((error) => {
+        console.log("There was an error fetching projects: ", error);
+      });
+  };
 
   handleAddProject = () => {
     this.setState({
@@ -54,16 +66,7 @@ class MainDashboard extends Component {
   };
 
   componentDidMount = () => {
-    axios
-      .get("http://localhost:8080/projects")
-      .then((response) => {
-        this.setState({
-          projectData: response.data,
-        });
-      })
-      .catch((error) => {
-        console.log("There was an error fetching projects: ", error);
-      });
+    this.getProjects();
   };
 
   componentDidUpdate = (prevProps, prevState) => {
@@ -81,6 +84,8 @@ class MainDashboard extends Component {
             closeModal={this.handleCloseModal}
             itemType={this.state.itemType}
             projectId={this.state.selectedProjectId}
+            refreshProjects={this.refreshProject}
+            getProjects={this.getProjects}
           />
         ) : (
           <main className="dashboard">

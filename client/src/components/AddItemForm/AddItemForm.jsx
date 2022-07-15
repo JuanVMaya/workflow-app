@@ -2,7 +2,14 @@ import axios from "axios";
 import ReactModal from "react-modal";
 import "./AddItemForm.scss";
 
-const AddItemForm = ({ isOpen, closeModal, itemType, projectId }) => {
+const AddItemForm = ({
+  isOpen,
+  closeModal,
+  itemType,
+  projectId,
+  refreshProjects,
+  getProjects,
+}) => {
   const handleCloseForm = () => {
     closeModal();
   };
@@ -22,6 +29,7 @@ const AddItemForm = ({ isOpen, closeModal, itemType, projectId }) => {
       })
       .then((response) => {
         closeModal();
+        getProjects();
       })
       .catch((error) => {
         console.log("There was an error creating the project", error);
@@ -29,14 +37,16 @@ const AddItemForm = ({ isOpen, closeModal, itemType, projectId }) => {
   };
   const handleSubmitTask = (event) => {
     event.preventDefault();
+    console.log(event.target.name.value, event.target.description.value);
     //Make post request to server to add task
     axios
       .post(`http://localhost:8080/projects/${projectId}/tasks`, {
         name: event.target.name.value,
-        description: event.target.name.description,
+        description: event.target.description.value,
       })
       .then((response) => {
         closeModal();
+        refreshProjects(projectId);
       })
       .catch((error) => {
         console.log("There was an error creating the project", error);

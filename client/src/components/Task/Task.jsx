@@ -5,7 +5,7 @@ const Task = ({ name, description, projectId, taskId }) => {
   const handleNext = () => {
     // projects/:projectId/tasks/:taskId/stage
     axios
-      .put(`localhost:8080/projects/${projectId}/tasks/${taskId}/stage`, {
+      .put(`http://localhost:8080/projects/${projectId}/tasks/${taskId}/stage`, {
         instruction: "next",
       })
       .then((response) => {
@@ -18,7 +18,7 @@ const Task = ({ name, description, projectId, taskId }) => {
   const handlePrevious = () => {
     // projects/:projectId/tasks/:taskId/stage
     axios
-      .put(`localhost:8080/projects/${projectId}/tasks/${taskId}/stage`, {
+      .put(`http://localhost:8080/projects/${projectId}/tasks/${taskId}/stage`, {
         instruction: "previous",
       })
       .then((response) => {

@@ -51,8 +51,8 @@ router
 router 
     .post('/', (req, res) => {
 
-        if(!req.body.name || !req.body.tasks || !req.body.deadline) {
-            res.status(400).send('Name, tasks and deadline are required to add project')
+        if(!req.body.name || !req.body.deadline) {
+            res.status(400).send('Name, and deadline are required to add project')
             return;
         }
 
@@ -60,8 +60,8 @@ router
 
         const newProject = {
             name: req.body.name,
-            tasks: req.body.tasks,
             timestamp: Date.now(),
+            tasks: [],
             deadline: req.body.deadline,
             id: uniqid(),
         }
@@ -71,6 +71,35 @@ router
         fs.writeFileSync('./data/projects.json', JSON.stringify(projectsData));
 
         res.status(201).json(newProject);
+    });
+
+
+//create endpoint to add new task to a project
+//POST
+router 
+    .post('/:projectId/tasks', (req, res) => {
+
+        if(!req.body.name || !req.body.description) {
+            res.status(400).send('Name and description are required to add project')
+            return;
+        }
+
+        const projectId = req.params.projectId;
+        const projectsData = readProjects();
+
+        const newTask = {
+            name: req.body.name,
+            description: req.body.description,
+            stage: 'Unassigned',
+            id: uniqid(),
+        }
+
+        const selectedProject = projectsData.find(project => project.id === projectId);
+        selectedProject.tasks.push(newTask);
+
+        fs.writeFileSync('./data/projects.json', JSON.stringify(projectsData));
+
+        res.status(201).json(newTask);
     });
 
 
@@ -85,7 +114,31 @@ router
         const selectedProject = projectsData.find(project => project.id === projectId);
         const selectedTask = selectedProject.tasks.find(task => task.id === taskId);
 
-        selectedTask.stage = req.body.stage;
+        const stages = ['Unassigned', 'Executing', 'Planning', 'Completed'];
+
+        const presentStage = selectedTask.stage;
+        const nextStage = req.body.instruction;
+
+        const assignStage = () => {
+
+            for(let i = 0; i < stages.length; i++) {
+
+                if (nextStage === 'next' && presentStage === stages[3]) {
+                    return
+                } else if (nextStage === 'previous' && presentStage === stages[0]) {
+                    return
+                }
+
+                if (nextStage === 'next' && presentStage === stages[i]) {
+                    return presentStage = stages[i+1];
+                } else if (nextStage === 'previous' && presentStage === stages[i]) {
+                    return presentStage = stages[i-1];
+                }
+            }
+
+        }
+
+        selectedTask.stage = presentStage;
 
         fs.writeFileSync('./data/projects.json', JSON.stringify(projectsData));
 
@@ -107,6 +160,5 @@ router
 
         res.status(200).json(deletedProject);
     })
-
 
 module.exports = router;

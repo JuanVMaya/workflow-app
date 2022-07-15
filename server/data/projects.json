@@ -1,1 +1,124 @@
-[{"name":"Grocery Shopping","tasks":[{"name":"Go to Food Basics","description":"Get fruits","stage":"Completed","id":"640d9135436a42cc922d513d095cb09f"},{"name":"Go to Walmart","description":"Get muffins and croissants","stage":"Planning","id":"e6bce0ecea2044cca4b56696232c6b45"},{"name":"Go to Loblaws","description":"Get noodles","stage":"Executing","id":"7dd50f6744724f118562f1d2ca4e0139"}],"timestamp":1657839502,"deadline":1663196197,"id":"f758a54aefeb4ab3959fcb46906e9122"},{"name":"Health Check","tasks":[{"name":"Call Doctor","description":"Make hospital Appointment","stage":"Unassigned","id":"7847b5a644434fcd956e01ce567d058a"},{"name":"Drive","description":"Drive to the appointment","stage":"Unassigned","id":"b126b40b1b054c99a84fa8a8823ff8cb"}],"timestamp":1657839504,"deadline":1663196200,"id":"{46e1025e6843470a9dd45f9e15c59911}"},{"name":"Job Search","tasks":[{"name":"Update LinkedIn","description":"Take professional picture","stage":"Planning","id":"97268948ff594c869c621a26390db661"}],"timestamp":1657839515,"deadline":1663196199,"id":"7742c162fe0e416683d98928d64f3413"},{"name":"Read Journals","tasks":[{"name":"Call Optometrist","description":"Get prescription glasses","stage":"Planning","id":"b6b028c961c64a87a06124032e1a6094"},{"name":"Download Journals","description":"Sort journals by context","stage":"Unassigned","id":"b23e3654132c4e4d97b304efa798dd6c"}],"timestamp":1657839503,"deadline":1663196205,"id":"e9ae1810ae6d4ac6972b89ac6c3bbe39"},{"name":"Clean House","tasks":[{"name":"Go to Walmart","description":"Buy Mop","stage":"Completed","id":"6fabb0fc5e6f48088507f7424fdd9fbc"}],"timestamp":1657839495,"deadline":1663196207,"id":"482a15629a6a4199ad47460c58058aea"},{"name":"Fix Stairs","tasks":[{"name":"Go to hardware store","description":"Buy Hammer","stage":"Unassigned","id":"89d13dd4e61742d1aff021e6a424b0e6"}],"timestamp":1657839505,"deadline":1663196200,"id":"c167cb3128504cb68daa8946e7681067"},{"name":"File Taxes","tasks":[{"name":"Sort Receipts","description":"Check for required documents","stage":"Executing","id":"5c0886118b8c4a038fc61f713bc5f298"}],"timestamp":16578395495,"deadline":1663196197,"id":"61931e08cb8b400c8d79cf41e850b6e4"},{"name":"Go Fishing","tasks":[{"name":"Buy Bait and hooks","description":"Go to Walmart for some bait and hooks","stage":"Unassigned","id":"cd8d97c655fc41e2890ffbb6dc7615cc"}],"timestamp":1657853430316,"deadline":"07/14/2022","id":"g2pc26k4l5lv4lrh"}]
+[
+    {
+        "name": "Grocery Shopping",
+        "tasks": [
+            {
+                "name": "Go to Food Basics",
+                "description": "Get fruits",
+                "stage": "Completed",
+                "id": "191cbda5227e4095b24eb35c5596d6b5"
+            },
+            {
+                "name": "Go to Walmart",
+                "description": "Get muffins and croissants",
+                "stage": "Planning",
+                "id": "ed84e641d2254ffa9028c5afbd2acd32"
+            },
+            {
+                "name": "Go to Loblaws",
+                "description": "Get noodles",
+                "stage": "Executing",
+                "id": "c85b0f815a654cfbb35686ac3e402239"
+            }
+        ],
+        "timestamp": 1657839502,
+        "deadline": 1663196197,
+        "id": "52df74823a404e66abc6f11feadac63a"
+    },
+    {
+        "name": "Health Check",
+        "tasks": [
+            {
+                "name": "Call Doctor",
+                "description": "Make hospital Appointment",
+                "stage": "Unassigned",
+                "id": "ce0a2928e30e47b58e43d9fbb652e753"
+            },
+            {
+                "name": "Drive",
+                "description": "Drive to the appointment",
+                "stage": "Unassigned",
+                "id": "bf188ac82e2a49c3afee86ac147f5368"
+            }
+        ],
+        "timestamp": 1657839504,
+        "deadline": 1663196200,
+        "id": "01170599868d4dec86d4c72dd2409d6d"
+    },
+    {
+        "name": "Job Search",
+        "tasks": [
+            {
+                "name": "Update LinkedIn",
+                "description": "Take professional picture",
+                "stage": "Planning",
+                "id": "551eeea0f8e34abbaf6b73bbacd18d02"
+            }
+        ],
+        "timestamp": 1657839515,
+        "deadline": 1663196199,
+        "id": "d2ffc764aed548b58d455f4355d7412e"
+    },
+    {
+        "name": "Read Journals",
+        "tasks": [
+            {
+                "name": "Call Optometrist",
+                "description": "Get prescription glasses",
+                "stage": "Planning",
+                "id": "6f0880d668674b84b424bfc8439a1017"
+            },
+            {
+                "name": "Download Journals",
+                "description": "Sort journals by context",
+                "stage": "Unassigned",
+                "id": "035e6adb71b5454cbc3be07389bc0469"
+            }
+        ],
+        "timestamp": 1657839503,
+        "deadline": 1663196205,
+        "id": "a59f8aa4582449ddb678f92107277039"
+    },
+    {
+        "name": "Clean House",
+        "tasks": [
+            {
+                "name": "Go to Walmart",
+                "description": "Buy Mop",
+                "stage": "Completed",
+                "id": "e6fb76137ad04b52bd15754366a3b6ca"
+            }
+        ],
+        "timestamp": 1657839495,
+        "deadline": 1663196207,
+        "id": "7e9a9cffe74b4dc78cf6d2726e048fa4"
+    },
+    {
+        "name": "Fix Stairs",
+        "tasks": [
+            {
+                "name": "Go to hardware store",
+                "description": "Buy Hammer",
+                "stage": "Unassigned",
+                "id": "5ac5a5a320fd4bf2a662e953504a70a6"
+            }
+        ],
+        "timestamp": 1657839505,
+        "deadline": 1663196200,
+        "id": "44a4595702e744f69741edb7f33723b4"
+    },
+    {
+        "name": "File Taxes",
+        "tasks": [
+            {
+                "name": "Sort Receipts",
+                "description": "Check for required documents",
+                "stage": "Executing",
+                "id": "06223b9c27ae4d919d5ea74be377ce9d"
+            }
+        ],
+        "timestamp": 16578395495,
+        "deadline": 1663196197,
+        "id": "093b798cfdf843549736c1713e1b65f1"
+    }
+]

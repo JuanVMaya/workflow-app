@@ -107,6 +107,11 @@ router
 //PUT
 router 
     .put('/:projectId/tasks/:taskId/stage', (req, res) => {
+        if(!req.body.instruction) {
+            res.status(400).send('Instruction is required to update task stage')
+            return;
+        }
+
         const projectId = req.params.projectId;
         const taskId = req.params.taskId;
         const projectsData = readProjects();
@@ -114,9 +119,9 @@ router
         const selectedProject = projectsData.find(project => project.id === projectId);
         const selectedTask = selectedProject.tasks.find(task => task.id === taskId);
 
-        const stages = ['Unassigned', 'Executing', 'Planning', 'Completed'];
+        const stages = ['Unassigned', 'Planning', 'Executing', 'Completed'];
 
-        const presentStage = selectedTask.stage;
+        let presentStage = selectedTask.stage;
         const nextStage = req.body.instruction;
 
         const assignStage = () => {
@@ -124,21 +129,20 @@ router
             for(let i = 0; i < stages.length; i++) {
 
                 if (nextStage === 'next' && presentStage === stages[3]) {
-                    return
+                    return presentStage;
                 } else if (nextStage === 'previous' && presentStage === stages[0]) {
-                    return
+                    return presentStage;
                 }
 
                 if (nextStage === 'next' && presentStage === stages[i]) {
-                    return presentStage = stages[i+1];
+                    return stages[i+1];
                 } else if (nextStage === 'previous' && presentStage === stages[i]) {
-                    return presentStage = stages[i-1];
+                    return stages[i-1];
                 }
             }
-
         }
 
-        selectedTask.stage = presentStage;
+        selectedTask.stage = assignStage();
 
         fs.writeFileSync('./data/projects.json', JSON.stringify(projectsData));
 

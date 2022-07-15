@@ -1,3 +1,4 @@
+import axios from "axios";
 import ReactModal from "react-modal";
 import "./AddItemForm.scss";
 
@@ -7,8 +8,23 @@ const AddItemForm = ({ isOpen, closeModal, itemType }) => {
   };
   const handleSubmitProject = (event) => {
     event.preventDefault();
-    //Make post request to server to add project
-    closeModal();
+    const toTimestamp = (strDate) => {
+      const dt = new Date(strDate).getTime();
+      return dt / 1000;
+    };
+    let date = toTimestamp(event.target.date.value);
+
+    axios
+      .post("http://localhost:8080/projects", {
+        name: event.target.date.name,
+        deadline: date,
+      })
+      .then((response) => {
+        closeModal();
+      })
+      .catch((error) => {
+        console.log("There was an error creating the project", error);
+      });
   };
   const handleSubmitTask = (event) => {
     event.preventDefault();
@@ -43,11 +59,7 @@ const AddItemForm = ({ isOpen, closeModal, itemType }) => {
             >
               Close
             </button>
-            <button
-              type="submit"
-              className="button"
-              onClick={handleSubmitProject}
-            >
+            <button type="submit" className="button">
               Submit
             </button>
           </div>
@@ -82,7 +94,7 @@ const AddItemForm = ({ isOpen, closeModal, itemType }) => {
             >
               Close
             </button>
-            <button type="submit" className="button" onClick={handleSubmitTask}>
+            <button type="submit" className="button">
               Submit
             </button>
           </div>

@@ -12,6 +12,7 @@
     min-width: 15%;
     border-top-right-radius: 0.5rem;
     padding: 0.5rem 0 0.5rem 0.5rem;
+    overflow: auto;
   }
   &__tasks {
     background-color: colours.$mercury;

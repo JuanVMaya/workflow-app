@@ -11,7 +11,8 @@ class MainDashboard extends Component {
     isModalOpen: false,
     itemType: "",
     projectData: [],
-    selectedProject: {},
+    selectedProjectId: null,
+    selectedProject: null,
   };
 
   handleAddProject = () => {
@@ -33,13 +34,39 @@ class MainDashboard extends Component {
     });
   };
 
-  componentDidMount = () => {
-    axios.get("http://localhost:8080/projects").then((response) => {
-      console.log(response.data);
-      this.setState({
-        projectData: response.data,
-      });
+  handleProjectClick = (id) => {
+    this.setState({
+      selectedProjectId: id,
     });
+  };
+
+  componentDidMount = () => {
+    axios
+      .get("http://localhost:8080/projects")
+      .then((response) => {
+        this.setState({
+          projectData: response.data,
+        });
+      })
+      .catch((error) => {
+        console.log("There was an error fetching projects: ", error);
+      });
+  };
+
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevState.selectedProjectId !== this.state.selectedProjectId) {
+      axios
+        .get(`http://localhost:8080/projects/${this.state.selectedProjectId}`)
+        .then((response) => {
+          console.log(response.data);
+          this.setState({
+            selectedProject: response.data,
+          });
+        })
+        .catch((error) => {
+          console.log("There was an error getting the tasks", error);
+        });
+    }
   };
 
   render() {
@@ -64,38 +91,17 @@ class MainDashboard extends Component {
                   <Project
                     key={project.id}
                     name={project.name}
-                    selected={this.state.selectedProject.id === project.id}
-                    onClick={() => {
-                      this.setState({
-                        selectedProject: project,
-                      });
-                    }}
+                    id={project.id}
+                    selected={this.state.selectedProjectId}
+                    onProjectClick={this.handleProjectClick}
                   />
                 );
               })}
-              <Project
-                name="Project Name 1"
-                timestamp="2022 - 06 - 10"
-                deadline="2022 - 06 - 10"
-                selected={false}
-              />
-              <Project
-                name="Project Name 2"
-                timestamp="2022 - 06 - 10"
-                deadline="2022 - 06 - 10"
-                selected={true}
-              />
-              <Project
-                name="Project Name 3"
-                timestamp="2022 - 06 - 10"
-                deadline="2022 - 06 - 10"
-                selected={false}
-              />
             </article>
             <article className="dashboard__tasks">
               <div className="stage">
                 <div className="stage__header-container">
-                  <h2 className="stage__title">Not started</h2>
+                  <h2 className="stage__title">Unassigned</h2>
                   <button
                     className="stage__button"
                     onClick={this.handleAddTask}
@@ -103,64 +109,79 @@ class MainDashboard extends Component {
                     <AiOutlinePlus size="1.5rem" />
                   </button>
                 </div>
-                <Task
-                  name="Task 1"
-                  description="This is the task description. Watch out becuase it can get very long"
-                />
-                <Task
-                  name="Task 2"
-                  description="This is the task description #2. Watch out becuase it can get very long"
-                />
-                <Task
-                  name="Task 3"
-                  description="This is the task description #2. Watch out becuase it can get very long"
-                />
+                {this.state.selectedProject &&
+                  this.state.selectedProject.tasks
+                    .filter((task) => {
+                      return task.stage === "Unassigned";
+                    })
+                    .map((task) => {
+                      return (
+                        <Task
+                          key={task.id}
+                          name={task.name}
+                          description={task.description}
+                          taskId={task.id}
+                          projectId={this.state.selectedProject.id}
+                        />
+                      );
+                    })}
               </div>
               <div className="stage">
                 <h2 className="stage__title">Executing</h2>
-                <Task
-                  name="Task 1"
-                  description="This is the task description. Watch out becuase it can get very long"
-                />
-                <Task
-                  name="Task 2"
-                  description="This is the task description #2. Watch out becuase it can get very long"
-                />
-                <Task
-                  name="Task 3"
-                  description="This is the task description #2. Watch out becuase it can get very long"
-                />
-                <Task
-                  name="Task 4"
-                  description="This is the task description #2. Watch out becuase it can get very long"
-                />
+                {this.state.selectedProject &&
+                  this.state.selectedProject.tasks
+                    .filter((task) => {
+                      return task.stage === "Executing";
+                    })
+                    .map((task) => {
+                      return (
+                        <Task
+                          key={task.id}
+                          name={task.name}
+                          description={task.description}
+                          taskId={task.id}
+                          projectId={this.state.selectedProject.id}
+                        />
+                      );
+                    })}
               </div>
               <div className="stage">
                 <h2 className="stage__title">Planning</h2>
-                <Task
-                  name="Task 1"
-                  description="This is the task description. Watch out becuase it can get very long"
-                />
-                <Task
-                  name="Task 2"
-                  description="This is the task description #2. Watch out becuase it can get very long"
-                />
-                <Task
-                  name="Task 3"
-                  description="This is the task description #2. Watch out becuase it can get very long"
-                />
+                {this.state.selectedProject &&
+                  this.state.selectedProject.tasks
+                    .filter((task) => {
+                      return task.stage === "Planning";
+                    })
+                    .map((task) => {
+                      return (
+                        <Task
+                          key={task.id}
+                          name={task.name}
+                          description={task.description}
+                          taskId={task.id}
+                          projectId={this.state.selectedProject.id}
+                        />
+                      );
+                    })}
               </div>
               <div className="stage">
                 <h2 className="stage__title">Completed</h2>
-
-                <Task
-                  name="Task 1"
-                  description="This is the task description. Watch out becuase it can get very long"
-                />
-                <Task
-                  name="Task 2"
-                  description="This is the task description #2. Watch out becuase it can get very long"
-                />
+                {this.state.selectedProject &&
+                  this.state.selectedProject.tasks
+                    .filter((task) => {
+                      return task.stage === "Completed";
+                    })
+                    .map((task) => {
+                      return (
+                        <Task
+                          key={task.id}
+                          name={task.name}
+                          description={task.description}
+                          taskId={task.id}
+                          projectId={this.state.selectedProject.id}
+                        />
+                      );
+                    })}
               </div>
             </article>
           </main>

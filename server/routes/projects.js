@@ -70,7 +70,7 @@ router
 
         fs.writeFileSync('./data/projects.json', JSON.stringify(projectsData));
 
-        res.status(200).json(newProject);
+        res.status(201).json(newProject);
     });
 
 
@@ -94,8 +94,19 @@ router
 
 
 //create endpoint to delete project
-//PUT
+//DELETE
+router
+    .delete('./id', (req, res) => {
+        const projectId = req.params.id;
+        const projectsData = readProjects();
+        const deletedProject = projectsData.find(project => project.id === projectId);
 
+        const filteredData = projectsData.filter(project => project.id !== projectId);
+
+        fs.writeFileSync('./data/projects.json', JSON.stringify(filteredData));
+
+        res.status(200).json(deletedProject);
+    })
 
 
 module.exports = router;

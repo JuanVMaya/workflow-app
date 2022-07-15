@@ -31,10 +31,47 @@ router
 
 //create endpoint to get selected project
 //GET
+router
+    .get('/:id', (req, res) => {
+        const projectId = req.params.id;
+        const projectsData = readProjects();
+        const selectedProject = projectsData.find(project => project.id === projectId);
+
+        if(!selectedProject) {
+            res.status(404).send('The project does not exist')
+            return;
+        }
+        
+        res.status(200).json(selectedProject);
+    });
 
 
 //create endpoint to add new project
 //POST
+router 
+    .post('/', (req, res) => {
+
+        if(!req.body.name || !req.body.tasks || !req.body.deadline) {
+            res.status(400).send('Name, tasks and deadline are required to add project')
+            return;
+        }
+
+        const projectsData = readProjects();
+
+        const newProject = {
+            name: req.body.name,
+            tasks: req.body.tasks,
+            timestamp: Date.now(),
+            deadline: req.body.deadline,
+            id: uniqid(),
+        }
+
+        projectsData.push(newProject);
+
+        fs.writeFileSync('./data/projects.json', JSON.stringify(projectsData));
+
+        res.status(200).json(newProject);
+    });
 
 
 //create endpoint to update task stage
